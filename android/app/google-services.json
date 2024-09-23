@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828460854782",
+    "project_id": "amit-firebase-add1f",
+    "storage_bucket": "amit-firebase-add1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828460854782:android:67ffda548ce6c639c6a4af",
+        "android_client_info": {
+          "package_name": "com.example.amit_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa789-dclqOuOLo4RwLwBoKeOvN2iVmRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
