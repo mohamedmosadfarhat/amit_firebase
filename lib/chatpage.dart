@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Chatpage extends StatefulWidget {
@@ -39,34 +40,50 @@ class _ChatpageState extends State<Chatpage> {
                             return snapshot.data!.docs[index]["email"] == email
                                 ? Align(
                                     alignment: Alignment.centerLeft,
-                                    child: Container(
-                                      padding: EdgeInsets.all(18),
-                                      margin: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: Colors.red,
-                                          borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(18),
-                                            topLeft: Radius.circular(18),
-                                            bottomLeft: Radius.circular(18),
-                                          )),
-                                      child: Text(
-                                          "${snapshot.data!.docs[index]["msg"]}"),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await FirebaseFirestore.instance
+                                            .collection("messages")
+                                            .doc(snapshot.data!.docs[index].id)
+                                            .delete();
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.all(18),
+                                        margin: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(18),
+                                              topLeft: Radius.circular(18),
+                                              bottomLeft: Radius.circular(18),
+                                            )),
+                                        child: Text(
+                                            "${snapshot.data!.docs[index]["msg"]}"),
+                                      ),
                                     ),
                                   )
                                 : Align(
                                     alignment: Alignment.centerRight,
-                                    child: Container(
-                                      padding: EdgeInsets.all(18),
-                                      margin: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: Colors.orange,
-                                          borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(18),
-                                            topLeft: Radius.circular(18),
-                                            bottomLeft: Radius.circular(18),
-                                          )),
-                                      child: Text(
-                                          "${snapshot.data!.docs[index]["msg"]}"),
+                                    child: InkWell(
+                                      onTap: () {
+                                        FirebaseFirestore.instance
+                                            .collection("messages")
+                                            .doc(snapshot.data!.docs[index].id)
+                                            .delete();
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.all(18),
+                                        margin: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            color: Colors.orange,
+                                            borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(18),
+                                              topLeft: Radius.circular(18),
+                                              bottomLeft: Radius.circular(18),
+                                            )),
+                                        child: Text(
+                                            "${snapshot.data!.docs[index]["msg"]}"),
+                                      ),
                                     ),
                                   );
                           }),

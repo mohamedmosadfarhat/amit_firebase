@@ -19,6 +19,20 @@ class _RegisterState extends State<Register> {
   String? email;
 
   String? password;
+  File? file;
+  String? url;
+  void uploadImage() async {
+    var image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      file = File(image.path);
+      setState(() {});
+      var imageStorage = await FirebaseStorage.instance.ref(image.path);
+      await imageStorage.putFile(file!);
+
+      url = await imageStorage.getDownloadURL() as String?;
+      print(url);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +47,23 @@ class _RegisterState extends State<Register> {
               Text(
                 "Register",
                 style: TextStyle(fontSize: 70),
+              ),
+              Column(
+                children: [
+                  file != null
+                      ? CircleAvatar(radius: 40, child: Image.network(url!))
+                      : CircleAvatar(
+                          radius: 40,
+                          child: Image.asset(
+                            "images/person.png",
+                          ),
+                        ),
+                  IconButton(
+                      onPressed: () {
+                        uploadImage();
+                      },
+                      icon: Icon(Icons.camera_alt))
+                ],
               ),
               CustomTextField(
                 lable: "email",
