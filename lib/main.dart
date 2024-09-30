@@ -1,3 +1,4 @@
+import 'package:amit_firebase/chatpage.dart';
 import 'package:amit_firebase/firebase_options.dart';
 import 'package:amit_firebase/home_details.dart';
 import 'package:amit_firebase/home_page.dart';
@@ -13,19 +14,21 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
- 
 }
+
 class MyApp extends StatelessWidget {
-  const MyApp({ Key? key }) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Register(),
       routes: {
-      Login.id:(context)=>Login(),
-      HomePage.id:(context)=>HomePage(),
-      HomeDetails.id:(context)=>HomeDetails(),
+        Login.id: (context) => Login(),
+        HomePage.id: (context) => HomePage(),
+        HomeDetails.id: (context) => HomeDetails(),
+        Chatpage.id:(context)=>Chatpage()
       },
     );
   }

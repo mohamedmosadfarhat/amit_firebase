@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:amit_firebase/custom_textField.dart';
 import 'package:amit_firebase/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 class Register extends StatefulWidget {
   Register({Key? key}) : super(key: key);

@@ -1,3 +1,4 @@
+import 'package:amit_firebase/chatpage.dart';
 import 'package:amit_firebase/custom_textField.dart';
 import 'package:amit_firebase/home_page.dart';
 import 'package:amit_firebase/login.dart';
@@ -55,7 +56,7 @@ class _LoginState extends State<Login> {
                     UserCredential userCredential = await FirebaseAuth.instance
                         .signInWithEmailAndPassword(
                             email: email!, password: password!);
-                    Navigator.of(context).pushNamed(HomePage.id);
+                    Navigator.of(context).pushNamed(Chatpage.id,arguments: email);
                   } catch (e) {
                     var snackBar = SnackBar(content: Text("$e"));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);

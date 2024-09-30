@@ -1,3 +1,4 @@
+import 'package:amit_firebase/chatpage.dart';
 import 'package:amit_firebase/home_details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -43,6 +44,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("home page"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, Chatpage.id);
+              },
+              icon: Icon(Icons.chat))
+        ],
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
