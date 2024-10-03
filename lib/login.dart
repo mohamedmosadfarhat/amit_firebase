@@ -3,6 +3,8 @@ import 'package:amit_firebase/custom_textField.dart';
 import 'package:amit_firebase/home_page.dart';
 import 'package:amit_firebase/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -16,6 +18,37 @@ class _LoginState extends State<Login> {
   String? email;
 
   String? password;
+  @override
+  void initState() {
+    // TODO: implement initState
+    FirebaseMessaging.instance.getAPNSToken().then((token) {
+      print("+++++++++++++++++++++++++");
+      print(token);
+      print("+++++++++++++++++++++++++");
+    });
+    super.initState();
+  }
+  // void handle(RemoteMessage? messag) {
+  //   if (messag != null) {
+  //     print("Ahmed farhat");
+  //     Navigator.of(context).pushNamed(Notificathoion.id ,arguments:messag );
+  //   }
+  // }
+
+  //  handle2() async {
+  //   await FirebaseMessaging.instance.getInitialMessage().then(handle);
+  // }
+
+  // @override
+  // void initState() {
+  //   print("+++++++++++++++++++++++++++");
+  //   var fbm = FirebaseMessaging.instance.getToken().then((v) {
+  //     print(v);
+  //   });
+  //   print("+++++++++++++++++++++++++++");
+  //   handle2();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +89,8 @@ class _LoginState extends State<Login> {
                     UserCredential userCredential = await FirebaseAuth.instance
                         .signInWithEmailAndPassword(
                             email: email!, password: password!);
-                    Navigator.of(context).pushNamed(Chatpage.id,arguments: email);
+                    Navigator.of(context)
+                        .pushNamed(Chatpage.id, arguments: email);
                   } catch (e) {
                     var snackBar = SnackBar(content: Text("$e"));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);

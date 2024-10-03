@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:amit_firebase/custom_textField.dart';
 import 'package:amit_firebase/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,6 +24,7 @@ class _RegisterState extends State<Register> {
   String? url;
   void uploadImage() async {
     var image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image == null) return;
     if (image != null) {
       file = File(image.path);
       setState(() {});
@@ -31,6 +33,7 @@ class _RegisterState extends State<Register> {
 
       url = await imageStorage.getDownloadURL() as String?;
       print(url);
+      setState(() {});
     }
   }
 

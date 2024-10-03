@@ -16,6 +16,7 @@ class _ChatpageState extends State<Chatpage> {
   String? data;
   TextEditingController controller = TextEditingController();
   final ScrollController _controller = ScrollController();
+  // var fbm = FirebaseMessaging.instance.getToken();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,8 @@ class _ChatpageState extends State<Chatpage> {
                                         padding: EdgeInsets.all(18),
                                         margin: EdgeInsets.all(10),
                                         decoration: BoxDecoration(
-                                            color: Colors.orange,
+                                            color: const Color.fromARGB(
+                                                255, 190, 185, 177),
                                             borderRadius: BorderRadius.only(
                                               topRight: Radius.circular(18),
                                               topLeft: Radius.circular(18),

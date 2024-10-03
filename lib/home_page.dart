@@ -34,8 +34,9 @@ class _HomePageState extends State<HomePage> {
     Future<void> addItem() {
       return items
           .add({
-            'image': "images/sparks.png", // John Doe
+            'image': "images/car.jpeg", // John Doe
             'name': "Car 3", // Stokes and Sons
+            "id": "1"
           })
           .then((value) => print("User Added"))
           .catchError((error) => print("Failed to add user: $error"));
